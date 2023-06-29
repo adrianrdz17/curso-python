@@ -1,0 +1,26 @@
+# Archivos y directorios generados por el entorno de desarrollo
+venv/
+*.pyc
+__pycache__/
+
+# Archivos generados por el sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración
+config.py
+instance/
+
+# Logs y archivos temporales
+*.log
+*.swp
+*.swo
+*.~lock.*
+*.tmp
+
+# Archivos de dependencias y entorno virtual
+env/
+lib/
+bin/
+include/
+pip-selfcheck.json
