@@ -76,7 +76,7 @@ def login():
             session['user_id'] = user['id']
 
             # Redirigimos a la pagina de inicio
-            return redirect(url_for('index'))
+            return redirect(url_for('todo.index'))
         
         flash(error)
     return render_template('auth/login.html')
@@ -103,3 +103,8 @@ def login_required(view):
         
         return view(**kwargs)
     return wrapped_view
+
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('auth.login'))

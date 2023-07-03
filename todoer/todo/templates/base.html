@@ -17,28 +17,51 @@
 		/>
 	</head>
 	<body>
-		<nav>
-			<h1>Todo List</h1>
-			<ul>
-				{% if g.user %}
-				<li><span>{{ g.user['username'] }}</span></li>
-				<li>
-					<a href="{{ url_for('auth.logout') }}">Cerrar sesion</a>
-				</li>
-				{% else %}
-				<li><a href="{{ url_for('auth.register') }}">Registarse</a></li>
-				<li>
-					<a href="{{ url_for('auth.login') }}">Iniciar sesion</a>
-				</li>
-				{% endif %}
-			</ul>
+		<nav class="navbar navbar-expand navbar-dark bg-dark">
+			<div class="container">
+				<a class="navbar-brand" href="#">Todo List</a>
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav d-flex">
+						{% if g.user %}
+						<li class="nav-item me-2">
+							<span class="navbar-text"
+								>{{ g.user['username'] }}</span
+							>
+						</li>
+						<li class="nav-item me-2">
+							<a
+								class="nav-link"
+								href="{{ url_for('auth.logout') }}"
+								>Cerrar sesión</a
+							>
+						</li>
+						{% else %}
+						<li class="nav-item me-2">
+							<a
+								class="nav-link"
+								href="{{ url_for('auth.register') }}"
+								>Registrarse</a
+							>
+						</li>
+						<li class="nav-item me-2">
+							<a
+								class="nav-link"
+								href="{{ url_for('auth.login') }}"
+								>Iniciar sesión</a
+							>
+						</li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
 		</nav>
-		<section class="content">
+
+		<section class="container my-3">
 			<header>{% block header %} {% endblock %}</header>
 			{% for message in get_flashed_messages() %}
 			<div class="flash">{{ message }}</div>
 			{% endfor %}
 		</section>
-		{% block content %} {% endblock %}
+		<div class="container mt-4">{% block content %} {% endblock %}</div>
 	</body>
 </html>

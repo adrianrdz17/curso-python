@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Todos {% endblock %}</h1>
+{% if g.user %}
+<a href="{{ url_for('todo.create') }}" class="action">Nuevo Todo</a>
+{% endif %} {% endblock %} {% block content %}
+<ul class="todo-list">
+	{% for todo in todos %}
+	<li class="todo-card">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">
+					{% if todo['completed'] == 1 %}
+					<strike>{{ todo['description'] }}</strike>
+					{% else %} {{ todo['description'] }} {% endif %}
+				</h5>
+				<p class="card-text">
+					{{ todo['created_at'].strftime('%Y-%m-%d') }}
+				</p>
+				<a
+					href="{{ url_for('todo.update', id=todo['id']) }}"
+					class="btn btn-primary"
+					>Editar</a
+				>
+			</div>
+		</div>
+	</li>
+	{% if not loop.last %}
+	<hr />
+	{% endif %} {% endfor %}
+</ul>
+
+{% endblock %}
